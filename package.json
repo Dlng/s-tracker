@@ -1,0 +1,26 @@
+{
+  "name": "shrouded-tracker",
+  "version": "0.0.1",
+  "description": "project tracker built with mean stack",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "bower": "^1.4.1",
+    "cors": "^2.5.3",
+    "express": "^4.12.3",
+    "mongoose": "^4.0.1"
+  },
+  "engines": {
+    "node": "0.12.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mean"
+  ],
+  "author": "",
+  "license": "MIT"
+}
