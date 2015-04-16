@@ -11,7 +11,8 @@ app.use(express.static('public'));
 app.set('port', (process.env.PORT || 5000));
 
 //var databaseUrl = 'mongodb://localhost/mean';
-var databaseUrl = process.env.MONGOLAB_URL;
+//var databaseUrl = process.env.MONGOLAB_URL;
+var databaseUrl = 'mongodb://user:password@ds061671.mongolab.com:61671/mongo';
 var mongoose = require("mongoose");
 mongoose.connect(databaseUrl);
 
