@@ -8,19 +8,19 @@ module.controller("AppCtrl", function ($http) {
     var app = this;
 
     app.saveProduct = function (newProduct) {
-        $http.post(url + "/add", {name: newProduct}).success(function() {
+        $http.post("/add", {name: newProduct}).success(function() {
             loadProducts();
         });
     };
 
     app.removeProduct = function (oldProduct) {
-        $http.post(url + "/remove", {name: oldProduct}).success(function() {
+        $http.post("/remove", {name: oldProduct}).success(function() {
            loadProducts();
         });
     };
 
     function loadProducts() {
-        $http.get(url + "/products").success(function (products) {
+        $http.get("/products").success(function (products) {
             app.products = products;
         })
     }
