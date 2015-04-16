@@ -10,8 +10,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('port', (process.env.PORT || 5000));
 
+//var databaseUrl = 'mongodb://localhost/mean';
+var databaseUrl = process.env.MONGOLAB_URL;
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/mean');
+mongoose.connect(databaseUrl);
 
 var Product = mongoose.model('Product', {name: String});
 
