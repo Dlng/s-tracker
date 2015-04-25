@@ -1,0 +1,52 @@
+.truncate{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*Disable the dotted line when button or link is focused*/
+a:active, a:focus, .btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0;
+}
+
+/*Get rid of the dotted box for select element in firefox*/
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+@media (min-width: 1450px) {
+    .container {
+        width: 1400px;
+    }
+}
+
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+    }
+    .sidebar-nav .navbar ul:not {
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
+#titlebar {
+    margin-bottom: 50px;
+}
+
+#menubar {
+    margin-bottom: 30px;
+}

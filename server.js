@@ -1,11 +1,19 @@
 var express = require("express");
-var app = express();
 var cors = require("cors");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+var session = require('express-session');
+
+var app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    resave: false, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+    secret: 'very secret'
+}));
 
 app.use(express.static('public'));
 app.set('port', (process.env.PORT || 5000));
@@ -13,40 +21,17 @@ app.set('port', (process.env.PORT || 5000));
 //var databaseUrl = 'mongodb://localhost/mean';
 //var databaseUrl = process.env.MONGOLAB_URL;
 var databaseUrl = 'mongodb://user:password@ds061671.mongolab.com:61671/mongo';
-var mongoose = require("mongoose");
 mongoose.connect(databaseUrl);
 
-var Product = mongoose.model('Product', {name: String});
+require('./server/')(app, mongoose);
 
-app.get("/products", function (reg, res) {
-    Product.find(function (err, products) {
-        res.send(products);
-    })
-});
+console.log('hello world');
 
-app.post("/add", function(req, res) {
-    var name = req.body.name;
-    var product = new Product({name: name});
-    product.save(function(err) {
-        res.send();
+var io = require('socket.io').listen(app.listen(app.get('port')));
+
+io.sockets.on('connection', function(socket) {
+    socket.emit('message', { message: 'welcome'});
+    socket.on('send', function(data) {
+        io.sockets.emit('message', data);
     });
 });
-
-app.post("/remove", function(req, res) {
-    var name = req.body.name;
-    Product.remove({name: name}, function(err) {
-        res.send();
-    });
-});
-
-app.listen(app.get('port'));
-
-
-//var product = new Product({name: "Webstorm"});
-//product.save(function (err) {
-//    if (err) {
-//        console.log('failed');
-//    } else {
-//        console.log('saved');
-//    }
-//});
