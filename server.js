@@ -3,6 +3,7 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var session = require('express-session');
+var port = process.env.PORT || 5000;
 
 var app = express();
 
@@ -16,11 +17,11 @@ app.use(session({
 }));
 
 app.use(express.static('public'));
-app.set('port', (process.env.PORT || 5000));
+app.set('port', port);
 
-//var databaseUrl = 'mongodb://localhost/mean';
+var databaseUrl = 'mongodb://localhost/mean';
 //var databaseUrl = process.env.MONGOLAB_URL;
-var databaseUrl = 'mongodb://user:password@ds061671.mongolab.com:61671/mongo';
+//var databaseUrl = 'mongodb://user:password@ds061671.mongolab.com:61671/mongo';
 mongoose.connect(databaseUrl);
 
 require('./server/')(app, mongoose);

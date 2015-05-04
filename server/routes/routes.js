@@ -4,17 +4,58 @@
 
 
 function restrict(req, res, next) {
-    if (req.session.user) {
-        next();
+    if (req.user) {
+        console.log('permitted');
     } else {
-        req.session.error = 'Access denied!';
-        res.redirect('/login');
+        //req.session.error = 'Access denied!';
+        //res.redirect('/login');
+        console.log('denied');
     }
 }
 
-module.exports = function (app, Product) {
+module.exports = function (app, Product, passport) {
 
-    app.get("/products", function (reg, res) {
+    app.get("/session", function(req, res) {
+        if (req.user) {
+            return res.send({'user': req.user.email});
+        } else {
+            return res.send();
+        }
+    });
+
+    app.post("/login", function(req, res, next) {
+        passport.authenticate('local-login', function(err, user, info) {
+            if (err) { return next(err) }
+            if (!user) {
+                return res.send(info);
+            }
+            req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                return res.send(info);
+            });
+        })(req, res, next);
+    });
+
+    app.get("/logout", function(req, res) {
+        req.logOut();
+        res.send();
+    });
+
+    app.post("/signup", function(req, res, next) {
+       passport.authenticate('local-signup', function(err, user, info) {
+           if (err) { return next(err) }
+           if (!user) {
+               return res.send(info);
+           }
+           req.logIn(user, function(err) {
+               if (err) {return next(err)}
+               return res.send(info);
+           });
+        })(req, res, next);
+    });
+
+    app.get("/products", function (req, res) {
+        restrict(req, res);
         Product.find(function (err, products) {
             res.send(products);
         })

@@ -5,8 +5,13 @@
 module.exports = function (mongoose) {
 
     var userSchema = mongoose.Schema({
-        name : String
+        email : String,
+        password : String
     });
+
+    userSchema.methods.validPassword = function(password) {
+        return this.password === password;
+    };
 
     return mongoose.model('User', userSchema);
 

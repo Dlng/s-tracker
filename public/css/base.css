@@ -15,6 +15,7 @@ select:-moz-focusring {
     text-shadow: 0 0 0 #000;
 }
 
+/*Another container size for bigger screen*/
 @media (min-width: 1450px) {
     .container {
         width: 1400px;
@@ -44,9 +45,33 @@ select:-moz-focusring {
 }
 
 #titlebar {
+    padding-top: 20px;
+    padding-bottom: 30px;
     margin-bottom: 50px;
 }
 
 #menubar {
     margin-bottom: 30px;
+}
+
+#login-background {
+    height: 100vh;
+    background-color: #8356c5;
+}
+
+#login-form {
+    border-radius: 10px;
+    background-color: white;
+    padding: 40px 40px 30px;
+    margin: 100px auto 20px;
+    max-width: 430px;
+}
+
+#login-form > h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#auth-container {
+    margin-top: 20px;
 }
