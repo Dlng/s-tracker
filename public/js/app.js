@@ -48,26 +48,26 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             requireLogin: true
         }
     }).state('auth.project.test', {
-        url: "/new",
-        templateUrl: "partials/auth/test.html",
+        url: "/test",
+        templateUrl: "partials/auth/project/test.html",
         data: {
             requireLogin: true
         }
     }).state('auth.project.home', {
-        url: "/new",
-        templateUrl: "partials/auth/home.html",
+        url: "/home",
+        templateUrl: "partials/auth/project/home.html",
         data: {
             requireLogin: true
         }
     }).state('auth.project.notes', {
-        url: "/new",
-        templateUrl: "partials/auth/a.html",
+        url: "/notes",
+        templateUrl: "partials/auth/project/notes.html",
         data: {
             requireLogin: true
         }
     }).state('auth.project.new', {
         url: "/new",
-        templateUrl: "partials/auth/a.html",
+        templateUrl: "partials/auth/project/a.html",
         data: {
             requireLogin: true
         }
@@ -89,13 +89,15 @@ app.run(function ($rootScope, $http, $state) {
     $http.get("/session").success(function (result) {
         if (result !== '') {
             $rootScope.currentUser = result.user;
+        } else {
+            $rootScope.currentUser = '';
         }
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             console.log("stateChangeStart");
             var requireLogin = toState.data.requireLogin;
 
-            if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+            if (requireLogin && $rootScope.currentUser === '') {
                 event.preventDefault();
                 console.log("restricted");
                 $state.go('login');

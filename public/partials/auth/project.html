@@ -7,16 +7,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" ui-sref="auth.project.test">TestPage</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a ui-sref="auth.project.home">Home <span class="sr-only">(current)</span></a></li>
+            <li><a ui-sref="auth.project.notes">Notes</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
@@ -35,7 +35,7 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
+            <li><a ui-sref="auth.project.new">New</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -50,79 +50,6 @@
     </div><!-- /.navbar-collapse -->
 </nav>
 
-<h4>List</h4>
-<ul class="list-unstyled">
-    <li class="text-primary" ng-repeat="product in app.products">
-        {{ product.name }}
-    </li>
-</ul>
 
-<h4>Table</h4>
-<table class="table table-hover">
-    <thead>
-    <th> # </th>
-    <th> Name </th>
-    </thead>
-    <tbody>
-    <tr class="success" ng-repeat="product in app.products">
-        <th scope="row"> {{$index + 1}} </th>
-        <td> {{product.name}} </td>
-    </tr>
-    </tbody>
-</table>
-
-<form class="form-inline">
-    <div class="form-group has-success has-feedback">
-        <label for="productName">Product Name</label>
-        <input type="text" class="form-control" id="productName" ng-model="app.newProduct" placeholder="Product">
-        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-    </div>
-    <button class="btn btn-default" ng-click="app.saveProduct(app.newProduct)">Save Product</button>
-    <button class="btn btn-danger" ng-click="app.removeProduct(app.newProduct)">Remove Product <span class="badge">4</span></button>
-    <select class="form-control">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-    </select>
-</form>
-
-<p class="bg-warning"> {{app.newProduct}} </p>
-
-<p> special text:  <mark>highlight</mark> <del>deleted</del> <abbr title="abbreviation"> abbr </abbr> </p>
-
-<p> even more special: <code>sample code</code> <kbd>keyboard input</kbd></p>
-
-<pre> block </pre>
-
-<blockquote>
-    <p>Everyone should use this product</p>
-    <footer> From <cite title="Source Title">The author</cite></footer>
-</blockquote>
-
-<div>
-    <button class="btn btn-default" ng-click="app.isCollapsed = !app.isCollapsed">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Toggle collapse
-    </button>
-    <hr>
-    <div collapse="app.isCollapsed">
-        <div class="well well-lg">Some content</div>
-    </div>
-</div>
-
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        Dropdown
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-        <li role="presentation" class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-    </ul>
-</div>
 
 <div ui-view></div>

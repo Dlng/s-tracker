@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<h4>List</h4>
+<ul class="list-unstyled">
+    <li class="text-primary" ng-repeat="product in app.products">
+        {{ product.name }}
+    </li>
+</ul>
 
-</body>
-</html>
+<h4>Table</h4>
+<table class="table table-hover">
+    <thead>
+    <th> # </th>
+    <th> Name </th>
+    </thead>
+    <tbody>
+    <tr class="success" ng-repeat="product in app.products">
+        <th scope="row"> {{$index + 1}} </th>
+        <td> {{product.name}} </td>
+    </tr>
+    </tbody>
+</table>
+
+<form class="form-inline">
+    <div class="form-group has-success has-feedback">
+        <label for="productName">Product Name</label>
+        <input type="text" class="form-control" id="productName" ng-model="app.newProduct" placeholder="Product">
+        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+    </div>
+    <button class="btn btn-default" ng-click="app.saveProduct(app.newProduct)">Save Product</button>
+    <button class="btn btn-danger" ng-click="app.removeProduct(app.newProduct)">Remove Product <span class="badge">4</span></button>
+    <select class="form-control">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+</form>
+
+<p class="bg-warning"> {{app.newProduct}} </p>
+
+<p> special text:  <mark>highlight</mark> <del>deleted</del> <abbr title="abbreviation"> abbr </abbr> </p>
+
+<p> even more special: <code>sample code</code> <kbd>keyboard input</kbd></p>
+
+<pre> block </pre>
+
+<blockquote>
+    <p>This is a blockquote</p>
+    <footer> From <cite title="Source Title">Someone important</cite></footer>
+</blockquote>
+
+<div>
+    <button class="btn btn-default" ng-click="app.isCollapsed = !app.isCollapsed">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Toggle collapse
+    </button>
+    <hr>
+    <div collapse="app.isCollapsed">
+        <div class="well well-lg">Some content</div>
+    </div>
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        Dropdown
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+    </ul>
+</div>

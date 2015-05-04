@@ -60,6 +60,7 @@ appController.controller('AppCtrl', function ($http, ipCookie, $rootScope, $loca
 
     this.logout = function () {
         $http.get("/logout").success(function() {
+            $rootScope.currentUser = '';
             $location.path("/");
         });
     };
